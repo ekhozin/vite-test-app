@@ -1,6 +1,7 @@
 {
   "name": "vite-test-app",
   "version": "1.0.0",
+  "private": true,
   "engines": {
     "node": "18.16.1",
     "npm": "^9.8.0"
@@ -8,5 +9,8 @@
   "workspaces": [
     "packages/*",
     "services/*"
-  ]
+  ],
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
 }

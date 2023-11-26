@@ -1,9 +1,8 @@
 {
-  "name": "@packages/ui-kit",
+  "name": "@services/host",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "main": "./src/index.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -12,10 +11,14 @@
     "typecheck": "tsc --noEmit --watch"
   },
   "dependencies": {
+    "@packages/ui-kit": "*",
+    "@packages/utils": "*",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0"
   },
   "devDependencies": {
+    "@originjs/vite-plugin-federation": "^1.3.3",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
@@ -25,7 +28,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
     "typescript": "^5.2.2",
-    "vite": "^5.0.0",
-    "vite-plugin-svgr": "^4.2.0"
+    "vite": "^5.0.0"
   }
 }
