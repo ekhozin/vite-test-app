@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr';
+import federation from '@originjs/vite-plugin-federation';
 
 /**
  * Plugins
@@ -23,7 +24,17 @@ const svgrPlugin = svgr({
   },
 });
 
-const plugins = [reactPlugin, svgrPlugin];
+const federationPlugin = federation({
+  name: 'ui-kit',
+  filename: 'remoteEntry.js',
+  // modules to expose
+  exposes: {
+    './Button': './src/ui/Button'
+  },
+  shared: ['react', 'react-dom'],
+});
+
+const plugins = [federationPlugin, reactPlugin, svgrPlugin];
 
 /**
  * Define config
