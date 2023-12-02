@@ -2,6 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import federation from '@originjs/vite-plugin-federation';
 
+// TODO: how to get it from env vars? How to set dynamically?
+const USERS_REMOTE_URL = 'http://localhost:3001';
+
 /**
  * Plugins
  */
@@ -11,9 +14,13 @@ const federationPlugin = federation({
   name: 'host',
   filename: 'remoteEntry.js',
   remotes: {
-    remote_app: 'http://localhost:5001/assets/remoteEntry.js',
+    users: `${USERS_REMOTE_URL}/assets/remoteEntry.js`,
   },
-  shared: ['react', 'react-dom', 'react-router-dom'],
+  shared: [
+    'react', 
+    'react-dom',
+    'react-router-dom',
+  ],
 });
 
 const plugins = [
@@ -21,7 +28,36 @@ const plugins = [
   reactPlugin,
 ];
 
+/**
+ * Server
+ */
+const server = {
+  port: 3000,
+  strictPort: true,
+};
+
+/**
+ * Build
+ */
+const build = {
+  modulePreload: false,
+  minify: false,
+  cssCodeSplit: false,
+  target: 'esnext',
+};
+
+/**
+ * Preview
+ */
+const preview = {
+  port: 3000,
+  strictPort: true,
+};
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins,
+  server,
+  build,
+  preview,
 });

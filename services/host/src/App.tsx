@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
 import { Button } from '@packages/ui-kit';
+import { getSum } from '@packages/utils';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,7 +15,7 @@ function App() {
         Counter: {count}
       </p>
       <p>
-        <Button onClick={() => setCount(s => s + 1)}>
+        <Button onClick={() => setCount(s => getSum(s, 2))}>
           Click me
         </Button>
       </p>

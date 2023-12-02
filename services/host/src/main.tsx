@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+// @ts-ignore
+const UsersApp = lazy(() => import('users/App'));
 
 const router = createBrowserRouter([
   {
@@ -10,11 +12,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/about',
-        element: <div>I am about page</div>
+        element: <div>I am about page</div>,
       },
       {
         path: '/users',
-        element: <div>I am users page</div>
+        element: (
+          <Suspense fallback='loading...'>
+            <UsersApp />
+          </Suspense>
+        ),
       },
     ],
   }

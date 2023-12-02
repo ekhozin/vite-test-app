@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import federation from "@originjs/vite-plugin-federation";
+import federation from '@originjs/vite-plugin-federation';
+import packageJson from './package.json';
 
 /**
  * Plugins
@@ -12,9 +13,19 @@ const federationPlugin = federation({
   filename: 'remoteEntry.js',
   // modules to expose
   exposes: {
-    './Button': './src/ui/Button'
+    './App': './src/App.tsx'
   },
-  shared: ['react', 'react-dom', 'react-router-dom'],
+  shared: {
+    react: {
+      requiredVersion: packageJson.dependencies['react'],
+    }, 
+    'react-dom': {
+      requiredVersion: packageJson.dependencies['react-dom'],
+    },
+    'react-router-dom': {
+      requiredVersion: packageJson.dependencies['react-router-dom'],
+    },
+  },
 });
 
 const plugins = [
@@ -22,7 +33,36 @@ const plugins = [
   reactPlugin,
 ];
 
+/**
+ * Server
+ */
+const server = {
+  port: 3001,
+  strictPort: true,
+};
+
+/**
+ * Build
+ */
+const build = {
+  modulePreload: false,
+  minify: false,
+  cssCodeSplit: false,
+  target: 'esnext',
+};
+
+/**
+ * Preview
+ */
+const preview = {
+  port: 3001,
+  strictPort: true,
+};
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: plugins,
-})
+  plugins,
+  server,
+  build,
+  preview,
+});

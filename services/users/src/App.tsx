@@ -1,6 +1,6 @@
 function App() {
   return (
-    <h1>Users app</h1>
+    <p>Users app module</p>
   )
 }
 
