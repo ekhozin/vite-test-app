@@ -13,7 +13,7 @@ const federationPlugin = federation({
   filename: 'remoteEntry.js',
   // modules to expose
   exposes: {
-    './App': './src/App.tsx'
+    './Router': './src/Router.tsx'
   },
   shared: {
     react: {
@@ -61,6 +61,7 @@ const preview = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/users',
   plugins,
   server,
   build,

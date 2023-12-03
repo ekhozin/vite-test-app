@@ -1,9 +1,10 @@
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 // @ts-ignore
-const UsersApp = lazy(() => import('users/App'));
+// const usersRoutes = lazy(() => import('users/App'));
+import usersRoutes from 'users/Router';
 
 const router = createBrowserRouter([
   {
@@ -14,14 +15,15 @@ const router = createBrowserRouter([
         path: '/about',
         element: <div>I am about page</div>,
       },
-      {
-        path: '/users',
-        element: (
-          <Suspense fallback='loading...'>
-            <UsersApp />
-          </Suspense>
-        ),
-      },
+      // {
+      //   path: '/users',
+      //   element: (
+      //     <Suspense fallback='loading...'>
+      //       <UsersApp />
+      //     </Suspense>
+      //   ),
+      // },
+      ...usersRoutes,
     ],
   }
 ]);

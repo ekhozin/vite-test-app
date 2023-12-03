@@ -14,7 +14,7 @@ const federationPlugin = federation({
   name: 'host',
   filename: 'remoteEntry.js',
   remotes: {
-    users: `${USERS_REMOTE_URL}/assets/remoteEntry.js`,
+    users: `${USERS_REMOTE_URL}/users/assets/remoteEntry.js`,
   },
   shared: [
     'react', 
