@@ -1,6 +1,8 @@
 import { Outlet, Link } from 'react-router-dom';
 
-function App() {
+export function Layout() {
+  console.log('Layout!!!');
+
   return (
     <div>
       <p>Users app module</p>
@@ -20,5 +22,3 @@ function App() {
     </div>
   )
 }
-
-export default App

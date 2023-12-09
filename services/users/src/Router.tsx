@@ -1,10 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
-import App from './App';
 
 export const routes = [
   {
     path: '/users',
-    element: <App />,
+    // element: <App />,
+    lazy: async () => {
+      const { Layout } = await import('./Layout');
+
+      return {
+        Component: Layout,
+      };
+    },
     children: [
       {
         index: true,
