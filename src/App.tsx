@@ -1,37 +1,70 @@
-import { useState } from 'react'
-import ReactLogo from './assets/react.svg?react'
-import './App.css'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Link,
+} from "react-router-dom";
 
-const sum = (a: number, b: number) => {
-  return a + b;
-};
+function Root () {
+  return (
+    <div>
+      <nav>
+        <Link to="/">
+          Home
+        </Link>
+        <Link to="/info">
+          Info
+        </Link>
+        <Link to="/contacts">
+          Contacts
+        </Link>
+      </nav>
+      <Outlet />
+    </div>
+  );
+}
+
+function Home () {
+  return (
+    <div>Home page</div>
+  );
+}
+
+function Info () {
+  return (
+    <div>Info page</div>
+  );
+}
+
+function Contacts () {
+  return (
+    <div>Contacts page</div>
+  );
+}
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  const res = sum(3, 2);
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <ReactLogo style={{ color: '#f00' }} />
-        </a>
-      </div>
-      <h1>Vite + React + TS</h1>
-      <p>{res}</p>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <Routes>
+        <Route
+          element={<Root />}
+        >
+          <Route
+            element={<Home />}
+            index
+          />
+          <Route
+            element={<Info />}
+            path="/info"
+          />
+          <Route
+            element={<Contacts />}
+            path="/contacts"
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -31,4 +31,5 @@ const plugins = [reactPlugin, svgrPlugin];
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: plugins,
+  base: '/vite-test-app'
 });
